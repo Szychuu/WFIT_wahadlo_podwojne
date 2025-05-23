@@ -1,0 +1,1 @@
+# WFIT_wahadlo_podwojne
