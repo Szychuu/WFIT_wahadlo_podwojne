@@ -4,7 +4,7 @@
 
 ## Wprowadzenie
 
-Jest to repozytorium projektowe z przedmiotu WFIT upubliczniające kod projketu - wahadło podwójne.
+Jest to repozytorium projektowe z przedmiotu WFIT upubliczniające kod projektu - wahadło podwójne.
 
 ## Skład zespołu
 - Bartłomiej Siwiecki
