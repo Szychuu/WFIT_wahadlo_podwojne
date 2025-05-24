@@ -28,6 +28,7 @@ def prompt_initial_conditions():
     }
 
     fig, ax = plt.subplots(figsize=(8, 4))
+    fig.canvas.manager.set_window_title('Wahadło podwójne - warunki początkowe')
     plt.subplots_adjust(left=0.1, bottom=0.2)
     ax.set_axis_off()
 
@@ -108,20 +109,20 @@ def run_simulation(theta1_0, theta2_0, L1, L2, m1, m2, dt=0.01, tmax=45.0, playb
 
 def animate(x1, y1, x2, y2, idx, L1, L2, playback_fps, trail_length=500):
     fig, ax = plt.subplots(figsize=(8, 6))
+    fig.canvas.manager.set_window_title('Symulacja podwójnego wahadła')
     ax.set_xlim(-L1 - L2 - 0.1, L1 + L2 + 0.1)
     ax.set_ylim(-L1 - L2 - 0.1, L1 + L2 + 0.1)
     ax.set_aspect('equal')
     plt.axis('off')
 
-    rod_line, = ax.plot([], [], lw=2, color='black')  # Grubsza linia wahadła
-    trail_line, = ax.plot([], [], lw=1, color='red', alpha=0.7)  # Czerwony ślad
+    rod_line, = ax.plot([], [], lw=2, color='black')
+    trail_line, = ax.plot([], [], lw=1, color='red', alpha=0.7)
 
     bob1 = Circle((0, 0), 0.05, fc='b', zorder=10)
     bob2 = Circle((0, 0), 0.05, fc='r', zorder=10)
     ax.add_patch(bob1)
     ax.add_patch(bob2)
 
-    # Inicjalizacja danych śladu
     trail_x = []
     trail_y = []
 
@@ -140,16 +141,13 @@ def animate(x1, y1, x2, y2, idx, L1, L2, playback_fps, trail_length=500):
         bob1.center = (x1[i], y1[i])
         bob2.center = (x2[i], y2[i])
 
-        # Aktualizacja śladu
         trail_x.append(x2[i])
         trail_y.append(y2[i])
 
-        # Ogranicz długość śladu
         if len(trail_x) > trail_length:
             trail_x = trail_x[-trail_length:]
             trail_y = trail_y[-trail_length:]
 
-        # Aktualizacja wizualizacji śladu
         trail_line.set_data(trail_x, trail_y)
 
         return rod_line, trail_line, bob1, bob2
